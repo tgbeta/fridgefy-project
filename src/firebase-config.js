@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA5_9EaWvDOvkjpo4QXDJV9Ww0INVgVIxQ",
-  authDomain: "fridgefy-assignment.firebaseapp.com",
-  projectId: "fridgefy-assignment",
-  storageBucket: "fridgefy-assignment.appspot.com",
-  messagingSenderId: "542058726551",
-  appId: "1:542058726551:web:4a77a9bc323360910795d2"
+  apiKey: "AIzaSyBdWHwEK2Im3NbdQfTD6CbtSqStecPlhD0",
+  authDomain: "fridgefy-assignment-b2310.firebaseapp.com",
+  projectId: "fridgefy-assignment-b2310",
+  storageBucket: "fridgefy-assignment-b2310.appspot.com",
+  messagingSenderId: "964041458294",
+  appId: "1:964041458294:web:6f79a3be147c69b9d05557"
 };
 
 // Initialize Firebase
