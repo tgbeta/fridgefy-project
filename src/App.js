@@ -1,54 +1,22 @@
 import "./App.css";
+import MyFridge from "./components/MyFridge/MyFridge";
+import MyRecipes from "./components/MyRecipes/MyRecipes";
 import NavBar from "./components/NavBar/NavBar";
+import Search from "./components/Search/Search";
+
+
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <div className="column-container">
-        {/* Left Column Component */}
-        <div className="column-sides">
-          <h2>My Fridge</h2>
-          <div>
-            <input />
-            <div>
-              <button>Search</button>
-              <button>Add</button>
-            </div>
-          </div>
-          <div className="column-box">
-            <p className="column-itens">Item:</p>
-            <p className="column-button">X</p>
-          </div>
-        </div>
-
-        {/* Middle Column Component */}
-        <div className="column-middle">
-          <div>
-            <h2>Search</h2>
-            <input />
-          </div>
-          <div>
-            <p>Filter Area</p>
-          </div>
-          <div>
-            <div>
-              <img />
-              <button></button>
-              <button></button>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column Component */}
-        <div className="column-sides">
-          <h2>My Recipes</h2>
-          <div>
-            <p>Recipe</p>
-            <button>X</button>
-          </div>
-        </div>
+       <MyFridge />
+        <Search />
+        <MyRecipes />
       </div>
+
+
       // * My Shopping List Page * * Header Component *
       <div>
         <div>
