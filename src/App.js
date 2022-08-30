@@ -10,13 +10,12 @@ function App() {
     <div className="App">
       <NavBar />
       <div className="column-container">
-       <MyFridge />
+        <MyFridge />
         <Search />
         <MyRecipes />
       </div>
 
-
-{/*       
+      {/*       
       <div>
         <div>
           <p>fridgefy</p>

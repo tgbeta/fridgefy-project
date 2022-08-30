@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import StyledMyFridge from './StyledMyFridge'
 
 class MyFridge extends Component {
     render() {
         return (
-            <div className="column-sides">
+          <StyledMyFridge>
             <h2>My Fridge</h2>
             <div>
               <input />
@@ -12,11 +13,11 @@ class MyFridge extends Component {
                 <button>Add</button>
               </div>
             </div>
-            <div className="column-box">
-              <p className="column-itens">Item:</p>
-              <button className='column-button'>X</button>
+            <div>
+              <p>Item:</p>
+              <p>X</p>
             </div>
-          </div>
+          </StyledMyFridge>
         );
     }
 }
