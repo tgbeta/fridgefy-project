@@ -3,67 +3,67 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-
       {/* Recipes Page */}
       {/* Header Component */}
-      <div>
-        <div>
-          <h1>fridgefy</h1>
+      <div className="header-div">
+        <div className="header-div-h1">
+          <h1>Fridgefy</h1>
         </div>
-        <div>
+        <div className="header-div-pages">
           <button>Recipes</button>
           <button>My Shopping List</button>
-          <p>Hello, user!</p>
+          <p>Hello, User!</p>
         </div>
-        <div>
+        <div className="header-div-buttons">
           <button>Login</button>
           <button>LogOut</button>
         </div>
       </div>
-
-
-      {/* Left Column Component */}
-      <div>
-        <h2>My Fridge</h2>
-        <div>
-          <input />
-          <button>Add</button>
-        </div>
-        <div>
-          <p>Item</p>
-          <button>X</button>
-        </div>
-      </div>
-
-      {/* Middle Column Component */}
-      <div>
-        <div>
-          <input />
-        </div>
-        <div>
-          <p>Filter Area</p>
-        </div>
-        <div>
+      <div className="column-container">
+        {/* Left Column Component */}
+        <div className="column-sides">
+          <h2>My Fridge</h2>
           <div>
-            <img />
-            <button></button>
-            <button></button>
+            <input />
+            <div>
+              <button>Search</button>
+              <button>Add</button>
+            </div>
+          </div>
+          <div className="column-box">
+            <p className="column-itens">Item:</p>
+            <p className="column-button">X</p>
+          </div>
+        </div>
+
+        {/* Middle Column Component */}
+        <div className="column-middle">
+          <div>
+            <h2>Recipe Result</h2>
+            <input />
+          </div>
+          <div>
+            <p>Filter Area</p>
+          </div>
+          <div>
+            <div>
+              <img />
+              <button></button>
+              <button></button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column Component */}
+        <div className="column-sides">
+          <h2>My Recipes</h2>
+          <div>
+            <p>Recipe</p>
+            <button>X</button>
           </div>
         </div>
       </div>
-
-      {/* Right Column Component */}
-      <div>
-        <h2>My Recipes</h2>
-        <div>
-          <p>Recipe</p>
-          <button>X</button>
-        </div>
-      </div>
-      
-
-      {/* My Shopping List Page */}
-      {/* Header Component */}
+      // * My Shopping List Page * * Header Component *
       <div>
         <div>
           <p>fridgefy</p>
@@ -78,7 +78,6 @@ function App() {
           <button>LogOut</button>
         </div>
       </div>
-
       {/* Left Column Component */}
       <div>
         <h2>My Fridge</h2>
@@ -91,7 +90,6 @@ function App() {
           <button>X</button>
         </div>
       </div>
-
       {/* Middle Column Component */}
       <div>
         <div>
@@ -104,7 +102,6 @@ function App() {
           <img />
         </div>
       </div>
-
       {/* Right Column Component */}
       <div>
         <h2>Items to Buy</h2>
@@ -113,7 +110,6 @@ function App() {
           <button>X</button>
         </div>
       </div>
-
     </div>
   );
 }
