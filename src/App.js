@@ -1,24 +1,10 @@
 import "./App.css";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
     <div className="App">
-      {/* Recipes Page */}
-      {/* Header Component */}
-      <div className="header-div">
-        <div className="header-div-h1">
-          <h1>Fridgefy</h1>
-        </div>
-        <div className="header-div-pages">
-          <button>Recipes</button>
-          <button>My Shopping List</button>
-          <p>Hello, User!</p>
-        </div>
-        <div className="header-div-buttons">
-          <button>Login</button>
-          <button>LogOut</button>
-        </div>
-      </div>
+      <NavBar />
       <div className="column-container">
         {/* Left Column Component */}
         <div className="column-sides">
@@ -39,7 +25,7 @@ function App() {
         {/* Middle Column Component */}
         <div className="column-middle">
           <div>
-            <h2>Recipe Result</h2>
+            <h2>Search</h2>
             <input />
           </div>
           <div>
