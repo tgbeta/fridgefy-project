@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class navBar extends Component {
+class NavBar extends Component {
   render() {
     return (
       <div className="header-div">
@@ -21,4 +21,4 @@ class navBar extends Component {
   }
 }
 
-export default navBar;
+export default NavBar;

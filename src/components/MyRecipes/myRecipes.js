@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class myRecipes extends Component {
+class MyRecipes extends Component {
     render() {
         return (
             <div className="column-sides">
@@ -14,4 +14,4 @@ class myRecipes extends Component {
     }
 }
 
-export default myRecipes;
+export default MyRecipes;

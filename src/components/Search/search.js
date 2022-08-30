@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class search extends Component {
+class Search extends Component {
     render() {
         return (
             <div className="column-middle">
@@ -23,4 +23,4 @@ class search extends Component {
     }
 }
 
-export default search;
+export default Search;
