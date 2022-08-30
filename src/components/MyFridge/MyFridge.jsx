@@ -14,7 +14,7 @@ class MyFridge extends Component {
             </div>
             <div className="column-box">
               <p className="column-itens">Item:</p>
-              <p className="column-button">X</p>
+              <button className='column-button'>X</button>
             </div>
           </div>
         );
