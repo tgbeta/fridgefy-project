@@ -5,7 +5,6 @@ import NavBar from "./components/NavBar/NavBar";
 import Search from "./components/Search/Search";
 
 
-
 function App() {
   return (
     <div className="App">
@@ -17,7 +16,7 @@ function App() {
       </div>
 
 
-      // * My Shopping List Page * * Header Component *
+{/*       
       <div>
         <div>
           <p>fridgefy</p>
@@ -32,7 +31,8 @@ function App() {
           <button>LogOut</button>
         </div>
       </div>
-      {/* Left Column Component */}
+      
+
       <div>
         <h2>My Fridge</h2>
         <div>
@@ -44,7 +44,8 @@ function App() {
           <button>X</button>
         </div>
       </div>
-      {/* Middle Column Component */}
+      
+
       <div>
         <div>
           <p>Recipe Name</p>
@@ -56,14 +57,15 @@ function App() {
           <img />
         </div>
       </div>
-      {/* Right Column Component */}
+      
+
       <div>
         <h2>Items to Buy</h2>
         <div>
           <p>Item</p>
           <button>X</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
