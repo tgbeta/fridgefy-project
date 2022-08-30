@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import StyledMyRecipes from './StyledMyRecipes';
 
 class MyRecipes extends Component {
     render() {
         return (
-            <div className="column-sides">
+            <StyledMyRecipes>
             <h2>My Recipes</h2>
             <div>
               <p>Recipe</p>
               <button>X</button>
             </div>
-          </div>
+            </StyledMyRecipes>
         );
     }
 }

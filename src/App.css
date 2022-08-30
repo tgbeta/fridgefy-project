@@ -3,9 +3,6 @@ body {
   padding: 0;
 }
 
-.App{
-}
-
 /* Header Component */
 
 .header-div{
@@ -42,13 +39,6 @@ body {
   text-align: center;
   padding: 10px;
   gap: 10px;
-}
-
-.column-sides {
-  flex: 20%;
-  height: 100vh;
-  border: 1px solid black;
-  border-radius: 5px;
 }
 
 .column-middle {
