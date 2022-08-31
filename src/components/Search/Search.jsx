@@ -12,12 +12,10 @@ export default function Search() {
   const handleSubmit = (event) => {
     console.log(dish);
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
-      setRecipes(res);
+      setRecipes(res.data.results);
       console.log(res);
     });
   };
-
-  
 
   return (
     <div className="column-middle">
@@ -61,9 +59,20 @@ export default function Search() {
         </div>
         <div>
           <div>
-            <img />
-              <button>More</button>
+            {recipes.map((recipe) => 
+              <div id={recipe.id}>
+              <img src={recipe.image} width="50" height="60"></img>
+              <p>{recipe.title}</p>
               <button>Add</button>
+              <button>More</button>
+              </div>
+            )}
+              {/* <div id={recipes.data.results[1].id}>
+              <img src={recipes.data.results[1].image} width="50" height="60"></img>
+              <p>{recipes.data.results[1].title}</p>
+              <button>Add</button>
+              <button>More</button>
+              </div> */}
           </div>
         </div>
       </div>
