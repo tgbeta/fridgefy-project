@@ -10,7 +10,7 @@ export const RecipeProvider = ({children}) => {
     }
 
     return (
-        <RecipeContext.Provider>
+        <RecipeContext.Provider value={{recipes, updateRecipes}}>
             {children}
         </RecipeContext.Provider>
 
