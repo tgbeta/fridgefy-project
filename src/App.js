@@ -1,19 +1,18 @@
 import "./App.css";
-import MyFridge from "./components/MyFridge/MyFridge.jsx";
-import MyRecipes from "./components/MyRecipes/MyRecipes.jsx";
 import NavBar from "./components/NavBar/NavBar";
-import Search from "./components/Search/Search.jsx";
-
+import { RecipeProvider } from "./components/RecipeContext";
+import Recipes from "./components/Recipes/Recipes";
+import MyShoppingList from "./components/MyShoppingList/MyShoppingList";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="column-container">
-        <MyFridge />
-        <Search />
-        <MyRecipes />
-      </div>
+      <RecipeProvider>
+          <Recipes />
+          {/* <MyShoppingList /> */}
+      </RecipeProvider>
+      
 
       {/*       
       <div>
