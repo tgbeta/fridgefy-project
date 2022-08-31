@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StyledMyRecipes from './StyledMyRecipes';
+import Search from '../Search/Search';
 
 class MyRecipes extends Component {
     render() {
