@@ -13,9 +13,11 @@ export default function Search() {
     console.log(dish);
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       setRecipes(res);
-      console.log(recipes);
+      console.log(res);
     });
   };
+
+  
 
   return (
     <div className="column-middle">
@@ -55,7 +57,7 @@ export default function Search() {
           <option>Pescetarian</option>
           <option>Paleo</option>
         </select>
-        <button onSubmit={handleSubmit}>Search</button>
+        <button onClick={handleSubmit}>Search</button>
         </div>
         <div>
           <div>
