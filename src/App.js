@@ -1,8 +1,8 @@
 import "./App.css";
-import MyFridge from "./components/MyFridge/myFridge";
-import MyRecipes from "./components/MyRecipes/myRecipes";
+import MyFridge from "./components/MyFridge/MyFridge.jsx";
+import MyRecipes from "./components/MyRecipes/MyRecipes.jsx";
 import NavBar from "./components/NavBar/NavBar";
-import Search from "./components/Search/search";
+import Search from "./components/Search/Search.jsx";
 
 
 function App() {
