@@ -1,5 +1,4 @@
 import React from 'react';
-import Ingredients from './Ingredients'
 
 export default function IngredientsList({IngredientsData}) {
     const Ingredients = IngredientsData.Ingredients;
