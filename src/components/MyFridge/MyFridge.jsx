@@ -4,6 +4,8 @@ import StyledMyFridge from "./StyledMyFridge";
 import axios from 'axios';
 //import { IngredientContext } from "../IngredientContext";
 
+export default function MyFridge() {
+
   const [ingredient, setIngredient] = useState("");
   const [listIngredients, setListIngredients] = useState([]);
 
@@ -21,19 +23,19 @@ import axios from 'axios';
   };
 
     return (
-    <StyledMyFridge>
-      <h2>My Fridge</h2>
-      <div>
-        <input type={'text'}
-        placeholder="Search Ingredient"
-        onChange={(e) => setIngredient(e.target.value)} />
+      <StyledMyFridge>
+        <h2>My Fridge</h2>
         <div>
-          <button onClick={getIngredients}>Add</button>
+          <input type={'text'}
+          placeholder="Search Ingredient"
+          onChange={(e) => setIngredient(e.target.value)} />
+          <div>
+            <button onClick={getIngredients}>Add</button>
+          </div>
         </div>
-      </div>
-      <div>
-        {listIngredients && <IngredientsList IngredientsData={listIngredients} />}
-      </div>
-    </StyledMyFridge>
+        <div>
+          {listIngredients && <IngredientsList IngredientsData={listIngredients} />}
+        </div>
+      </StyledMyFridge>
   );
 }
