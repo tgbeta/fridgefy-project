@@ -1,5 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
+import { RecipeContext } from '../RecipeContext.jsx';
 
 export default function Search() {
 
@@ -9,12 +10,16 @@ export default function Search() {
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
 
+  const { recipe, updateRecipes } = useContext(RecipeContext);
+
   const handleSubmit = (event) => {
-    console.log(dish);
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       setRecipes(res.data.results);
-      console.log(res);
     });
+  };
+
+  const handleSubmitRecipe = (newRecipeAdded) => {
+    updateRecipes({ ...newRecipeAdded });
   };
 
   return (
@@ -60,19 +65,13 @@ export default function Search() {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <div id={recipe.id}>
+              <div key={recipe.id}>
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
-              <button>Add</button>
+              <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
               <button>More</button>
               </div>
             )}
-              {/* <div id={recipes.data.results[1].id}>
-              <img src={recipes.data.results[1].image} width="50" height="60"></img>
-              <p>{recipes.data.results[1].title}</p>
-              <button>Add</button>
-              <button>More</button>
-              </div> */}
           </div>
         </div>
       </div>
