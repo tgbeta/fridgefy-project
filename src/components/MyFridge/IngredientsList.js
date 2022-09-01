@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function IngredientsList({IngredientsData}) {
     const Ingredients = IngredientsData.Ingredients;
+    //console.log(Ingredients[0])
 
     return (
         <main>

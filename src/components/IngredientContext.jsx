@@ -2,17 +2,17 @@ import { createContext, useState } from 'react';
 
 export const IngredientContext = createContext();
 
-export const RecipeProvider = ({children}) => {
-    const [recipes, setRecipes] = useState([]);
+export const IngredientProvider = ({children}) => {
+    const [ingredients, setIngredients] = useState([]);
 
-    const updateRecipes = (newRecipe) => {
-        setRecipes([ ...recipes, newRecipe ]);
+    const updateIngredients = (newIngredient) => {
+        setIngredients([ ...ingredients, newIngredient ]);
     }
 
     return (
-        <RecipeContext.Provider value={{recipes, updateRecipes}}>
+        <IngredientContext.Provider value={{ingredients, updateIngredients}}>
             {children}
-        </RecipeContext.Provider>
+        </IngredientContext.Provider>
 
     )
 }
