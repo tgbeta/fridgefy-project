@@ -1,23 +1,23 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { Component, useEffect, useState } from "react";
 import IngredientsList from "./IngredientsList";
 import StyledMyFridge from "./StyledMyFridge";
 import axios from 'axios';
-//import { IngredientContext } from "../IngredientContext";
+
+export default function UserIngredients() {
+  
 
   const [ingredient, setIngredient] = useState("");
   const [listIngredients, setListIngredients] = useState([]);
 
-  //const { ingredients, updateIngredients } = useContext(IngredientContext);
-
   const getIngredients = () => {
-    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${ingredient}`).then((res) => {
-      const filterIngredient = res.data.results.filter(resIngedient => resIngedient.name == ingredient); //else with message not find ingredient
+    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${ingredient}`).then((res) => {
+
+      const filterIngredient = res.filter(resIngedient => resIngedient.data.results.name == ingredient);
 
       setListIngredients(filterIngredient);
       console.log(listIngredients)
-
-      //updateIngredients({ ...filterIngredient});
     });
+    
   };
 
     return (
@@ -32,7 +32,7 @@ import axios from 'axios';
         </div>
       </div>
       <div>
-        {listIngredients && <IngredientsList IngredientsData={listIngredients} />}
+        {ingredient && <IngredientsList IngredientsData={ingredient} />}
       </div>
     </StyledMyFridge>
   );
