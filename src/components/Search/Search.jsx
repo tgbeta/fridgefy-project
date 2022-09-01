@@ -1,7 +1,7 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
-import { IngredientContext } from '../IngredientContext.jsx';
+
 
 export default function Search() {
 
@@ -11,18 +11,20 @@ export default function Search() {
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const { recipe, updateRecipes } = useContext(RecipeContext);
+  const { recipesContext, updateRecipes } = useContext(RecipeContext);
 
   const handleSubmit = (event) => {
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
-      setRecipes(res);
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       console.log(res)
+      setRecipes(res.data.results);
     });
   };
 
   const handleSubmitRecipe = (newRecipeAdded) => {
     updateRecipes({ ...newRecipeAdded });
   };
+
+
 
   return (
     <div className="column-middle">

@@ -3,6 +3,7 @@ import Accordion from './AccordionMenu.jsx';
 
 export default function RecipesShoppingList() {
 
+
     //Usar o conteudo salvo no firebase
 
     const accordionData = [

@@ -1,26 +1,28 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import IngredientsList from "./IngredientsList";
 import StyledMyFridge from "./StyledMyFridge";
 import axios from 'axios';
-//import { IngredientContext } from "../IngredientContext";
+import { IngredientContext } from "../IngredientContext";
 
-export default function MyFridge() {
+export default function UserIngredients() {
 
   const [ingredient, setIngredient] = useState("");
   const [listIngredients, setListIngredients] = useState([]);
 
-  //const { ingredients, updateIngredients } = useContext(IngredientContext);
+//  const  { ingredientsContext, setIngredients} = useContext(IngredientContext);
 
   const getIngredients = () => {
-    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${ingredient}`).then((res) => {
-      const filterIngredient = res.data.results.filter(resIngedient => resIngedient.name == ingredient); //else with message not find ingredient
-
-      setListIngredients(filterIngredient);
-      console.log(listIngredients)
-
-      //updateIngredients({ ...filterIngredient});
+    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${ingredient}`).then((res) => {
+    setListIngredients(res.data.results);
     });
+    
   };
+
+  // chamar o contexto do ingrediente e chamar dentro da funcao
+  const handleSubmitAddIngredient = () => {
+
+
+  }
 
     return (
       <StyledMyFridge>
@@ -29,13 +31,18 @@ export default function MyFridge() {
           <input type={'text'}
           placeholder="Search Ingredient"
           onChange={(e) => setIngredient(e.target.value)} />
+          <ul>
+            {
+              listIngredients.map(ingredient => <li value="" onClick={handleSubmitAddIngredient}>{ingredient.name}</li>)
+            }
+          </ul>
           <div>
-            <button onClick={getIngredients}>Add</button>
+            <button onClick={getIngredients}>Search</button>
           </div>
         </div>
-        <div>
-          {listIngredients && <IngredientsList IngredientsData={listIngredients} />}
-        </div>
-      </StyledMyFridge>
+          <div>
+            {ingredient && <IngredientsList IngredientsData={ingredient} />}
+          </div>
+    </StyledMyFridge>
   );
 }
