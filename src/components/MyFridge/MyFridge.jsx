@@ -3,6 +3,7 @@ import IngredientsList from "./IngredientsList";
 import StyledMyFridge from "./StyledMyFridge";
 import axios from 'axios';
 //import { IngredientContext } from "../IngredientContext";
+const MyFridge = () =>{
 
   const [ingredient, setIngredient] = useState("");
   const [listIngredients, setListIngredients] = useState([]);
@@ -37,3 +38,5 @@ import axios from 'axios';
     </StyledMyFridge>
   );
 }
+
+export default MyFridge
