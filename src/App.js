@@ -3,37 +3,72 @@ import MyFridge from "./components/MyFridge/MyFridge";
 import MyRecipes from "./components/MyRecipes/MyRecipes";
 import NavBar from "./components/NavBar/NavBar";
 import Search from "./components/Search/Search";
-
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/NavBar/ProtectedRoute';
+import { AppContext } from "./components/NavBar/appContext";
+import { useState } from "react";
 
 function App() {
+  const [isLogIn, setIsLogIn] = useState(false);
   return (
     <div className="App">
-      <NavBar />
-      <div className="column-container">
-       <MyFridge />
-        <Search />
-        <MyRecipes />
-      </div>
-
-
+    {/* <div className="column-container"> */}
+    <AppContext.Provider value={{isLogIn, setIsLogIn}}>
+      <BrowserRouter>
+       <NavBar />
+       <Routes>
+        <Route path='/' element=
+        {
+          <>
+          <h2>This is a home page.</h2> 
+          <p>Let's begin to search recipes! If you want to use other features, please log-in first.</p>
+          <Search />
+          </>
+        }
+        />
+        <Route path='/recipes' element=
+        {
+        <>
+         <ProtectedRoute>
+          <MyFridge />
+        {/* </ProtectedRoute> */}
+          <Search />
+        {/* <ProtectedRoute> */}
+          <MyRecipes />
+         </ProtectedRoute>
+        </>
+        }
+        />
+        <Route path='/myshoppinglist' element=
+        {
+        <>
+         <ProtectedRoute>
+          <MyFridge />
+          <div>Component: Recipes List(to be created later)</div>
+          <div>Component: Items to buy(to be created later)</div>
+         </ProtectedRoute>
+        </>
+        }
+        />
+        
 {/*       
-      <div>
+        HTML STRUCTURE
+        <div>
         <div>
           <p>fridgefy</p>
-        </div>
-        <div>
+         </div>
+         <div>
           <button>Recipes</button>
           <button>My Shopping List</button>
           <p>Hello, user!</p>
-        </div>
-        <div>
+         </div>
+         <div>
           <button>Login</button>
           <button>LogOut</button>
+         </div>
         </div>
-      </div>
       
-
-      <div>
+       <div>
         <h2>My Fridge</h2>
         <div>
           <input />
@@ -43,10 +78,9 @@ function App() {
           <p>Item</p>
           <button>X</button>
         </div>
-      </div>
+       </div>
       
-
-      <div>
+       <div>
         <div>
           <p>Recipe Name</p>
           <button>X</button>
@@ -56,16 +90,19 @@ function App() {
           <p>More Info...</p>
           <img />
         </div>
-      </div>
+       </div>
       
-
-      <div>
+       <div>
         <h2>Items to Buy</h2>
         <div>
           <p>Item</p>
           <button>X</button>
         </div>
-      </div> */}
+       </div> */}
+      </Routes>
+     </BrowserRouter>
+     </AppContext.Provider>
+     {/* </div> */}
     </div>
   );
 }

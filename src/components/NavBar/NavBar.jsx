@@ -1,24 +1,56 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { auth } from '../../firebase-config'
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { AppContext } from "./appContext";
 
-class NavBar extends Component {
-  render() {
+const provider = new GoogleAuthProvider();
+function NavBar () {
+    const [user, setUser] = useState('User');
+    const login = useContext(AppContext);
+    // console.log(login);
+
+    // const handleChangeForRecipeBtn = () => {
+    //   alert("You should log-in first!");
+    // }
+
+    // const handleChangeForListBtn = () => {
+    //   alert("You should log-in first!");
+    // }
+
+    const loginWithGoogle = () => {
+      signInWithPopup(auth, provider).then((result)=>{
+        console.log(result);
+        login.setIsLogIn(true);
+        // console.log(result.user.displayName)
+        setUser(result.user.displayName);
+        // emailVerified: true
+      })
+    }
+
+    const logoutWithGoogle = () => {
+      signOut(auth).then(()=> {
+        alert("Log out");
+        setUser('User');
+        login.setIsLogIn(false);
+      }).catch((error) => {
+        console.log("An error happened.");
+      });
+    }
+
     return (
-      <div className="header-div">
-        <div className="header-div-h1">
-          <h1>Fridgefy</h1>
-        </div>
-        <div className="header-div-pages">
-          <button>Recipes</button>
-          <button>My Shopping List</button>
-          <p>Hello, User!</p>
-        </div>
-        <div className="header-div-buttons">
-          <button>Login</button>
-          <button>LogOut</button>
-        </div>
-      </div>
+      <nav>
+       <Link to='/'>Fridgefy</Link>
+       <Link to='/recipes'>Recipes</Link>
+       <Link to='/myshoppinglist'>My Shopping List</Link>
+       <p>Hello, {user}!</p>
+       {!login.isLogIn?<button onClick={()=>loginWithGoogle()}>LogIn</button>
+        :<button onClick={()=>logoutWithGoogle()}>LogOut</button>
+       }
+      </nav>
     );
-  }
+
+  
 }
 
 export default NavBar;
