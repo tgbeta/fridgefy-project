@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Accordion from './AccordionMenu.jsx';
 
 export default function RecipesShoppingList() {
 
+    //Usar o conteudo salvo no firebase
 
     return (
-        //CHANGE IT ALL. JUST TO SHOW SOMETHING
-        <div>
-            <h2>Recipes Shopping List</h2>
-        </div>
+        // <div>
+        //     <h1>My Shopping List - Recipes</h1>
+        //     <div className="accordion">
+        //         {recipes.map(({ title, content }) => (
+        //             <Accordion title={title} content={content} />
+        //         ))}
+        //     </div>
+        // </div>
     )
 }

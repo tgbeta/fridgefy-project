@@ -79,3 +79,6 @@ export default function Search() {
       </div>
   );
 }
+
+
+//quando o ususario clicar em Add, fazer um novo request com o ID da receita e adicionar esse retorno ao firebase
