@@ -1,7 +1,7 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
-import { IngredientContext } from '../IngredientContext.jsx';
+
 
 export default function Search() {
 
@@ -81,3 +81,6 @@ export default function Search() {
       </div>
   );
 }
+
+
+//quando o ususario clicar em Add, fazer um novo request com o ID da receita e adicionar esse retorno ao firebase

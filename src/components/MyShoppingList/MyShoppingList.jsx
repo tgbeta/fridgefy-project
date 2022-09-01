@@ -8,8 +8,8 @@ export default function MyShoppingList() {
     return (
         <div className="column-container">
             <MyFridge />
-            <ItemsBuy />
             <RecipesShoppingList />
+            <ItemsBuy />
         </div>
     )
 }
