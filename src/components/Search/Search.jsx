@@ -1,6 +1,7 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
+import { IngredientContext } from '../IngredientContext.jsx';
 
 export default function Search() {
 
