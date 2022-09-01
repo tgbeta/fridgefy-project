@@ -14,7 +14,8 @@ export default function Search() {
 
   const handleSubmit = (event) => {
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
-      setRecipes(res.data.results);
+      setRecipes(res);
+      console.log(res)
     });
   };
 

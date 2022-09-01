@@ -5,23 +5,19 @@ import axios from 'axios';
 
 export default function UserIngredients() {
 
-  function handleChange(e) {
-    setIngredients(e.target.value)
-  }
+  const [ingredient, setIngredient] = useState("");
+  const [listIngredients, setListIngredients] = useState([]);
 
-  const [ingredients, setIngredients] = useState("");
-  
-  function getIngredients() {
-    fetch('https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query')
-    .then((response) => response.json())
-    .then((data) => {
-      setIngredients(data);
-      console.log(data);
-    })
-    .catch(() => {
-      console.log('error')
-    })
-  }
+  const getIngredients = () => {
+    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${ingredient}`).then((res) => {
+
+      const filterIngredient = res.filter(resIngedient => resIngedient.data.results.name == ingredient);
+
+      setListIngredients(filterIngredient);
+      console.log(listIngredients)
+    });
+    
+  };
 
     return (
     <StyledMyFridge>
@@ -29,14 +25,13 @@ export default function UserIngredients() {
       <div>
         <input type={'text'}
         placeholder="Search Ingredient"
-        onChange={handleChange} />
+        onChange={(e) => setIngredient(e.target.value)} />
         <div>
-          <button onClick={getIngredients}>Search</button>
-          <button>Add</button>
+          <button onClick={getIngredients}>Add</button>
         </div>
       </div>
       <div>
-        {ingredients && <IngredientsList IngredientsData={ingredients} />}
+        {ingredient && <IngredientsList IngredientsData={ingredient} />}
       </div>
     </StyledMyFridge>
   );
