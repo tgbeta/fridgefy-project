@@ -15,7 +15,7 @@ class MyFridge extends Component {
             </div>
             <div>
               <p>Item:</p>
-              <p>X</p>
+              <button>X</button>
             </div>
           </StyledMyFridge>
         );
