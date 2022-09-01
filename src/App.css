@@ -61,5 +61,6 @@ body {
 }
 
 .column-button{
-  flex: 50%;
+  margin: 10px 1px;
+  
 }
