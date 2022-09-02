@@ -26,6 +26,8 @@ export default function Search() {
     const recipeToBeAdded = {id, title, ingredients, image};
     addRecipe(recipeToBeAdded);
     });
+
+    
   };
 
   return (

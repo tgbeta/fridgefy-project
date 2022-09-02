@@ -35,13 +35,14 @@ export const RecipeProvider = ({children}) => {
         setRecipes([filteredRecipe]);
     }
 
-    const getRecipe = async(recipe) => {
-        const recipeGet = query(recipesCollection, where('id', '==', recipe.id));
-        await getDocs(recipeGet);
+    const getRecipes = async() => {
+        const recipeGet = query(recipesCollection);
+        const response = await getDocs(recipeGet);
+        return response;
     }
 
     return (
-        <RecipeContext.Provider value={{recipes, updateRecipes, addRecipe, removeRecipe, getRecipe}}>
+        <RecipeContext.Provider value={{recipes, updateRecipes, addRecipe, removeRecipe, getRecipes}}>
             {children}
         </RecipeContext.Provider>
 

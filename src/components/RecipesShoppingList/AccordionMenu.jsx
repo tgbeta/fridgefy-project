@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Accordion = ({ title, content }) => {
+const Accordion = ({ title, ingredients, image }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -9,7 +9,7 @@ const Accordion = ({ title, content }) => {
         <div>{title}</div>
         <div>{isActive ? '-' : '+'}</div>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && <div className="accordion-content">{ingredients}{image}</div>}
     </div>
   );
 };
