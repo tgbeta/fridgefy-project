@@ -1,10 +1,11 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
+import { IngredientContext } from '../IngredientContext.jsx';
+import { useEffect } from 'react';
 import StyledSearch from './StyledSearch.js';
 
-
-export default function Search() {
+export default function Search({ handleToAdd }) {
 
   const [dish, setDish] = useState('');
   const [cousine, setCousine] = useState('');
@@ -13,19 +14,14 @@ export default function Search() {
   const [recipes, setRecipes] = useState([]);
 
   const { recipesContext, updateRecipes } = useContext(RecipeContext);
+  
 
   const handleSubmit = (event) => {
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=fe8a7c202d4a43df80d296759033f730&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       console.log(res)
       setRecipes(res.data.results);
     });
   };
-
-  const handleSubmitRecipe = (newRecipeAdded) => {
-    updateRecipes({ ...newRecipeAdded });
-  };
-
-
 
   return (
     <StyledSearch className="column-middle">
@@ -73,7 +69,7 @@ export default function Search() {
               <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
-              <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
+              <button onClick={() => handleToAdd(recipe)}>Add</button>
               <button>More</button>
               </div>
             )}
