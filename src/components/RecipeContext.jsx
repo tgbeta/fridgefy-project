@@ -10,7 +10,9 @@ import {
     query,
 } from 'firebase/firestore';
   
-import { db } from '../firebase-config';
+import { auth, db } from '../firebase-config';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const recipesCollection = collection(db, 'recipes');
 
@@ -18,14 +20,30 @@ export const RecipeContext = createContext();
 
 export const RecipeProvider = ({children}) => {
     const [recipes, setRecipes] = useState([]);
-
+    const [user, setUser] = useState(null);
+    useEffect(()=> {
+        onAuthStateChanged(auth, async (user)=>{
+            if(user){
+                console.log('úser', user)
+                setUser(user);
+                const q = query(recipesCollection, where('userId', '==', user.uid))
+                const result = await getDocs(q);
+                const recipesFromDb = result.docs.map(doc => ({...doc.data(), dbId:doc.id}))
+                setRecipes(recipesFromDb);
+            } else {
+                setUser(null);
+                setRecipes([]);
+            }
+        })
+    }, [])
     const updateRecipes = (newRecipe) => {
         setRecipes([ ...recipes, newRecipe ]);
     }
 
     const addRecipe = async(recipe) => {
-        const newRecipe = await addDoc(recipesCollection, recipe);
-        setRecipes([...recipes, {...recipe, dbId:newRecipe.id } ])
+        const recipeToAdd = {...recipe, userId:user.uid}
+        const newRecipe = await addDoc(recipesCollection, recipeToAdd);
+        setRecipes([...recipes, {...recipe, dbId:newRecipe.id } ]);
     }
 
     const removeRecipe = async(recipe) => {
@@ -35,14 +53,8 @@ export const RecipeProvider = ({children}) => {
         setRecipes([filteredRecipe]);
     }
 
-    const getRecipes = async() => {
-        const recipeGet = query(recipesCollection);
-        const response = await getDocs(recipeGet);
-        return response;
-    }
-
     return (
-        <RecipeContext.Provider value={{recipes, updateRecipes, addRecipe, removeRecipe, getRecipes}}>
+        <RecipeContext.Provider value={{recipes, updateRecipes, addRecipe, removeRecipe}}>
             {children}
         </RecipeContext.Provider>
 

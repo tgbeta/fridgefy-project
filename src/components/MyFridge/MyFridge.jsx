@@ -15,14 +15,14 @@ export default function UserIngredients() {
     axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${ingredient}`).then((res) => {
     setListIngredients(res.data.results);
     });
-    
   };
 
   // chamar o contexto do ingrediente e chamar dentro da funcao
-  const handleSubmitAddIngredient = () => {
-
-
+  const handleSubmitAddIngredient = (e) => {
+    e.preventDefault();
+    
   }
+
 
     return (
       <StyledMyFridge>

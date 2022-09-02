@@ -9,7 +9,15 @@ const Accordion = ({ title, ingredients, image }) => {
         <div>{title}</div>
         <div>{isActive ? '-' : '+'}</div>
       </div>
-      {isActive && <div className="accordion-content">{ingredients}{image}</div>}
+      {isActive && <div className="accordion-content">
+        <div>
+          {ingredients.map((ingredient) => <div>{ingredient}</div>)}
+        </div>
+        <div>
+          <img src={image} width="50" height="60"></img>
+        </div>
+        
+      </div>}
     </div>
   );
 };

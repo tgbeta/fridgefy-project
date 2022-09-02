@@ -1,6 +1,9 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
+import { IngredientContext } from '../IngredientContext.jsx';
+import { useEffect } from 'react';
+import StyledSearch from './StyledSearch.js';
 
 export default function Search() {
 
@@ -20,18 +23,18 @@ export default function Search() {
   };
 
   const handleSubmitRecipe = (newRecipeAdded) => {
+    console.log("recipe addded1")
     axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOONACULAR}&ids=${newRecipeAdded.id}`).then((res) => {
     const {id, title, extendedIngredients, image} = res.data[0];
     const ingredients = extendedIngredients.map(ingredient => ingredient.name);
     const recipeToBeAdded = {id, title, ingredients, image};
     addRecipe(recipeToBeAdded);
-    });
-
-    
+    console.log("recipe addded2")
+    });    
   };
 
   return (
-    <div className="column-middle">
+    <StyledSearch className="column-middle">
       <div>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
@@ -73,7 +76,7 @@ export default function Search() {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <div key={recipe.id}>
+              <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
@@ -82,9 +85,6 @@ export default function Search() {
             )}
           </div>
         </div>
-      </div>
+      </StyledSearch>
   );
 }
-
-
-//quando o ususario clicar em Add, fazer um novo request com o ID da receita e adicionar esse retorno ao firebase
