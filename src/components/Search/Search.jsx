@@ -1,6 +1,7 @@
 import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
+import StyledSearch from './StyledSearch.js';
 
 
 export default function Search() {
@@ -27,7 +28,7 @@ export default function Search() {
 
 
   return (
-    <div className="column-middle">
+    <StyledSearch className="column-middle">
       <div>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
@@ -69,7 +70,7 @@ export default function Search() {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <div key={recipe.id}>
+              <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
@@ -78,7 +79,7 @@ export default function Search() {
             )}
           </div>
         </div>
-      </div>
+      </StyledSearch>
   );
 }
 
