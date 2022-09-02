@@ -3,6 +3,7 @@ import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
 import { useEffect } from 'react';
+import StyledSearch from './StyledSearch.js';
 
 export default function Search({ handleToAdd }) {
 
@@ -23,7 +24,7 @@ export default function Search({ handleToAdd }) {
   };
 
   return (
-    <div className="column-middle">
+    <StyledSearch className="column-middle">
       <div>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
@@ -65,7 +66,7 @@ export default function Search({ handleToAdd }) {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <div key={recipe.id}>
+              <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleToAdd(recipe)}>Add</button>
@@ -74,6 +75,9 @@ export default function Search({ handleToAdd }) {
             )}
           </div>
         </div>
-      </div>
+      </StyledSearch>
   );
 }
+
+
+//quando o ususario clicar em Add, fazer um novo request com o ID da receita e adicionar esse retorno ao firebase
