@@ -1,24 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from "react";
+import IngredientsList from "./IngredientsList";
+import StyledMyFridge from "./StyledMyFridge";
+import axios from 'axios';
 
-class MyFridge extends Component {
-    render() {
-        return (
-            <div className="column-sides">
-            <h2>My Fridge</h2>
-            <div>
-              <input />
-              <div>
-                <button>Search</button>
-                <button>Add</button>
-              </div>
-            </div>
-            <div className="column-box">
-              <p className="column-itens">Item:</p>
-              <p className="column-button">X</p>
-            </div>
-          </div>
-        );
-    }
+export default function UserIngredients() {
+  
+
+  const [ingredient, setIngredient] = useState("");
+  const [listIngredients, setListIngredients] = useState([]);
+
+  const getIngredients = () => {
+    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${ingredient}`).then((res) => {
+
+      const filterIngredient = res.filter(resIngedient => resIngedient.data.results.name == ingredient);
+
+      setListIngredients(filterIngredient);
+      console.log(listIngredients)
+    });
+    
+  };
+
+    return (
+    <StyledMyFridge>
+      <h2>My Fridge</h2>
+      <div>
+        <input type={'text'}
+        placeholder="Search Ingredient"
+        onChange={(e) => setIngredient(e.target.value)} />
+        <div>
+          <button onClick={getIngredients}>Add</button>
+        </div>
+      </div>
+      <div>
+        {ingredient && <IngredientsList IngredientsData={ingredient} />}
+      </div>
+    </StyledMyFridge>
+  );
 }
-
-export default MyFridge;

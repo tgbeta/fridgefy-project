@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import StyledMyRecipes from './StyledMyRecipes';
+import Search from '../Search/Search';
+
 
 class MyRecipes extends Component {
     render() {
         return (
-            <div className="column-sides">
-            <h2>My Recipes</h2>
-            <div>
-              <p>Recipe</p>
-              <button>X</button>
-            </div>
-          </div>
+            <StyledMyRecipes>
+                <h2>My Recipes</h2>
+                    <div>
+                    <p>Recipe</p>
+                    <button>X</button>
+                    </div>
+            </StyledMyRecipes>
         );
     }
 }

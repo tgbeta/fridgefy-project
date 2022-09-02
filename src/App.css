@@ -41,13 +41,6 @@ body {
   gap: 10px;
 }
 
-.column-sides {
-  flex: 20%;
-  height: 100vh;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
 .column-middle {
   flex: 50%;
   height: 100vh;
@@ -68,5 +61,6 @@ body {
 }
 
 .column-button{
-  flex: 50%;
+  margin: 10px 1px;
+  
 }
