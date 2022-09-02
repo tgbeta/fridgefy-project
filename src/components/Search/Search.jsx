@@ -2,7 +2,6 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 
-
 export default function Search() {
 
   const [dish, setDish] = useState('');
@@ -11,20 +10,23 @@ export default function Search() {
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const { recipesContext, updateRecipes } = useContext(RecipeContext);
+  const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
 
   const handleSubmit = (event) => {
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       console.log(res)
       setRecipes(res.data.results);
     });
   };
 
   const handleSubmitRecipe = (newRecipeAdded) => {
-    updateRecipes({ ...newRecipeAdded });
+    axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOONACULAR}&ids=${newRecipeAdded.id}`).then((res) => {
+    const {id, title, extendedIngredients, image} = res.data[0];
+    const ingredients = extendedIngredients.map(ingredient => ingredient.name);
+    const recipeToBeAdded = {id, title, ingredients, image};
+    addRecipe(recipeToBeAdded);
+    });
   };
-
-
 
   return (
     <div className="column-middle">
