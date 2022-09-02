@@ -5,7 +5,7 @@ import { IngredientContext } from '../IngredientContext.jsx';
 import { useEffect } from 'react';
 import StyledSearch from './StyledSearch.js';
 
-export default function Search({ handleToAdd }) {
+export default function Search() {
 
   const [dish, setDish] = useState('');
   const [cousine, setCousine] = useState('');
@@ -13,14 +13,24 @@ export default function Search({ handleToAdd }) {
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const { recipesContext, updateRecipes } = useContext(RecipeContext);
-  
+  const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
 
   const handleSubmit = (event) => {
-    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=fe8a7c202d4a43df80d296759033f730&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
       console.log(res)
       setRecipes(res.data.results);
     });
+  };
+
+  const handleSubmitRecipe = (newRecipeAdded) => {
+    console.log("recipe addded1")
+    axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOONACULAR}&ids=${newRecipeAdded.id}`).then((res) => {
+    const {id, title, extendedIngredients, image} = res.data[0];
+    const ingredients = extendedIngredients.map(ingredient => ingredient.name);
+    const recipeToBeAdded = {id, title, ingredients, image};
+    addRecipe(recipeToBeAdded);
+    console.log("recipe addded2")
+    });    
   };
 
   return (
@@ -69,7 +79,7 @@ export default function Search({ handleToAdd }) {
               <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
-              <button onClick={() => handleToAdd(recipe)}>Add</button>
+              <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
               <button>More</button>
               </div>
             )}
@@ -78,6 +88,3 @@ export default function Search({ handleToAdd }) {
       </StyledSearch>
   );
 }
-
-
-//quando o ususario clicar em Add, fazer um novo request com o ID da receita e adicionar esse retorno ao firebase
