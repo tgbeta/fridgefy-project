@@ -2,8 +2,9 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
-import { useEffect } from 'react';
 import StyledSearch from './StyledSearch.js';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export default function Search() {
 
@@ -12,6 +13,7 @@ export default function Search() {
   const [diet, setDiet] = useState('');
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [show, setShow] = useState(false);
 
   const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
 
@@ -32,6 +34,10 @@ export default function Search() {
     console.log("recipe addded2")
     });    
   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);    
+
 
   return (
     <StyledSearch className="column-middle">
@@ -80,7 +86,18 @@ export default function Search() {
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
-              <button>More</button>
+              <button variant="primary" onClick={handleShow}>More</button>
+
+              <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>{recipe.title}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Ingredients</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>Close</Button>
+              </Modal.Footer>
+              </Modal>
+
               </div>
             )}
           </div>

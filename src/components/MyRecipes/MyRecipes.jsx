@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import StyledMyRecipes from './StyledMyRecipes';
-// import Search from '../Search/Search';
+import { RecipeContext } from '../RecipeContext.jsx';
 
-const MyRecipes = ({ myRecipes, handleToDelete }) => {
+//const MyRecipes = ({ myRecipes, handleToDelete }) => {
+export default function MyRecipes() {
 
-    // useEffect(() => {
-    //     console.log(localStorage.getItem("myRescipes"));
-    // }, [localStorage.getItem("myRescipes")])
-
+    const { recipes, removeRecipe } = useContext(RecipeContext);
+    
+    const handleToDelete = (RecipeDeletedId) => {
+        removeRecipe(RecipeDeletedId);
+        console.log("recipe deleted")   
+      };
 
   return (
     <StyledMyRecipes >
         <h2>My Recipes</h2>
         {
-            myRecipes.length != 0 
+           recipes.length != 0 
             ?
-            myRecipes.map((item, index) => {
+            recipes.map((item) => {
                 return (
                     <>
                         <p>{item.title}</p>
@@ -30,4 +33,4 @@ const MyRecipes = ({ myRecipes, handleToDelete }) => {
   )
 }
 
-export default MyRecipes;
+//export default MyRecipes;
