@@ -32,6 +32,21 @@ body {
   
 }
 
+.home-heading {
+  padding-left: 20px;
+  font-size: 2rem;
+}
+
+.home-text {
+  padding-left: 20px;
+  font-size: 1.5rem;
+}
+
+.log-in {
+  font-weight: 700;
+  color: #FC7232;
+}
+
 /* Columns Component */
 
 .column-container {
