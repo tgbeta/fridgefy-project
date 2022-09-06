@@ -41,10 +41,10 @@ export default function Search() {
 
   return (
     <StyledSearch className="column-middle">
-      <div>
+      <StyledContainer>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
-      </div>
+      </StyledContainer>
       <div>
         <p>Filter Area</p>
         <label>Cousine</label>
@@ -80,7 +80,7 @@ export default function Search() {
         <button onClick={handleSubmit}>Search</button>
         </div>
         <div>
-          <div>
+          <StyledColumn>
             {recipes.map((recipe) => 
               <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
@@ -100,7 +100,7 @@ export default function Search() {
 
               </div>
             )}
-          </div>
+          </StyledColumn>
         </div>
       </StyledSearch>
   );

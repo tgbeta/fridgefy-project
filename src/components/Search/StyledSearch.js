@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledSearch = styled.div`
-    background-color: #eee;
     margin: 0;
 
 `;
@@ -19,9 +18,8 @@ export const StyledContainer = styled.div`
 
 
 export const StyledColumn = styled.div`
-    columns: 3; 
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding-top: 35px;
+    display: grid;
+    grid-template-columns: auto auto auto;
 
 `;
