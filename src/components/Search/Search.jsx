@@ -2,10 +2,16 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
+<<<<<<< Updated upstream
+import { useEffect } from 'react';
 import StyledSearch from './StyledSearch.js';
+=======
+import styled from "styled-components";
+import { StyledColumn, StyledSearch, StyledContainer } from './StyledSearch.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { AppContext } from '../NavBar/appContext.jsx';
+>>>>>>> Stashed changes
+
 
 export default function Search() {
 
@@ -14,11 +20,8 @@ export default function Search() {
   const [diet, setDiet] = useState('');
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
-  const [show, setShow] = useState(false);
 
   const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
-  const login = useContext(AppContext);
-  console.log(login);
 
   const handleSubmit = (event) => {
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
@@ -38,16 +41,12 @@ export default function Search() {
     });    
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);    
-
-
   return (
     <StyledSearch className="column-middle">
-      <div>
+      <StyledContainer>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
-      </div>
+      </StyledContainer>
       <div>
         <p>Filter Area</p>
         <label>Cousine</label>
@@ -83,17 +82,16 @@ export default function Search() {
         <button onClick={handleSubmit}>Search</button>
         </div>
         <div>
-          <div className='wrapper-recipe-box'>
+          <div>
             {recipes.map((recipe) => 
-              <div className='recipe-box' key={recipe.id} >
+              <StyledColumn key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
-              <button onClick={() => {
-                login.isLogIn 
-                ? handleSubmitRecipe(recipe)
-                : alert("You must login first to add recipes!");
-              }
-              }>Add</button>
+              <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
+<<<<<<< Updated upstream
+              <button>More</button>
+              </div>
+=======
               <button variant="primary" onClick={handleShow}>More</button>
 
               <Modal show={show} onHide={handleClose}>
@@ -106,7 +104,8 @@ export default function Search() {
               </Modal.Footer>
               </Modal>
 
-              </div>
+              </StyledColumn>
+>>>>>>> Stashed changes
             )}
           </div>
         </div>
