@@ -5,6 +5,7 @@ import { IngredientContext } from '../IngredientContext.jsx';
 import StyledSearch from './StyledSearch.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { AppContext } from '../NavBar/appContext.jsx';
 
 export default function Search() {
 
@@ -16,6 +17,8 @@ export default function Search() {
   const [show, setShow] = useState(false);
 
   const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
+  const login = useContext(AppContext);
+  console.log(login);
 
   const handleSubmit = (event) => {
     axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${dish}&cuisine=${cousine}&diet=${diet}&intolerances=${intolarance}`).then((res) => {
@@ -80,12 +83,17 @@ export default function Search() {
         <button onClick={handleSubmit}>Search</button>
         </div>
         <div>
-          <div>
+          <div className='wrapper-recipe-box'>
             {recipes.map((recipe) => 
-              <div key={recipe.id} >
+              <div className='recipe-box' key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
-              <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
+              <button onClick={() => {
+                login.isLogIn 
+                ? handleSubmitRecipe(recipe)
+                : alert("You must login first to add recipes!");
+              }
+              }>Add</button>
               <button variant="primary" onClick={handleShow}>More</button>
 
               <Modal show={show} onHide={handleClose}>
