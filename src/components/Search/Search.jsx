@@ -2,9 +2,16 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
+<<<<<<< Updated upstream
+import { useEffect } from 'react';
 import StyledSearch from './StyledSearch.js';
+=======
+import styled from "styled-components";
+import { StyledColumn, StyledSearch, StyledContainer } from './StyledSearch.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+>>>>>>> Stashed changes
+
 
 export default function Search() {
 
@@ -41,10 +48,10 @@ export default function Search() {
 
   return (
     <StyledSearch className="column-middle">
-      <div>
+      <StyledContainer>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
-      </div>
+      </StyledContainer>
       <div>
         <p>Filter Area</p>
         <label>Cousine</label>
@@ -82,10 +89,11 @@ export default function Search() {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <div key={recipe.id} >
+              <StyledColumn key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
+<<<<<<< HEAD
               <button variant="primary" onClick={handleShow}>More</button>
 
               <Modal show={show} onHide={handleClose}>
@@ -98,7 +106,26 @@ export default function Search() {
               </Modal.Footer>
               </Modal>
 
+=======
+<<<<<<< Updated upstream
+              <button>More</button>
+>>>>>>> e9452177e9f9f9a074e3176bced7a678146278c4
               </div>
+=======
+              <button variant="primary" onClick={handleShow}>More</button>
+
+              <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>{recipe.title}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Ingredients</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>Close</Button>
+              </Modal.Footer>
+              </Modal>
+
+              </StyledColumn>
+>>>>>>> Stashed changes
             )}
           </div>
         </div>

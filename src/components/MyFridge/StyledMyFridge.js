@@ -5,8 +5,9 @@ const StyledMyFridge = styled.section`
   height: 100vh;
   border: 1px solid black;
   border-radius: 5px;
-  
+
 `;
+
 
 
 export default StyledMyFridge;
