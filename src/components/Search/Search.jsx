@@ -2,15 +2,10 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
-<<<<<<< Updated upstream
-import { useEffect } from 'react';
-import StyledSearch from './StyledSearch.js';
-=======
 import styled from "styled-components";
 import { StyledColumn, StyledSearch, StyledContainer } from './StyledSearch.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
->>>>>>> Stashed changes
 
 
 export default function Search() {
@@ -88,10 +83,6 @@ export default function Search() {
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
-<<<<<<< Updated upstream
-              <button>More</button>
-              </div>
-=======
               <button variant="primary" onClick={handleShow}>More</button>
 
               <Modal show={show} onHide={handleClose}>
@@ -105,7 +96,6 @@ export default function Search() {
               </Modal>
 
               </StyledColumn>
->>>>>>> Stashed changes
             )}
           </div>
         </div>
