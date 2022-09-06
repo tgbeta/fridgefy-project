@@ -2,11 +2,9 @@ import React, { Component, useState, useContext } from 'react';
 import axios from "axios";
 import { RecipeContext } from '../RecipeContext.jsx';
 import { IngredientContext } from '../IngredientContext.jsx';
-import styled from "styled-components";
-import { StyledColumn, StyledSearch, StyledContainer } from './StyledSearch.js';
+import { StyledSearch, StyledContainer, StyledColumn} from './StyledSearch.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
 
 export default function Search() {
 
@@ -15,6 +13,7 @@ export default function Search() {
   const [diet, setDiet] = useState('');
   const [intolarance, setIntolarance] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [show, setShow] = useState(false);
 
   const { recipesContext, updateRecipes, addRecipe } = useContext(RecipeContext);
 
@@ -36,12 +35,16 @@ export default function Search() {
     });    
   };
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);    
+
+
   return (
     <StyledSearch className="column-middle">
-      <StyledContainer>
+      <div>
         <h2>Search</h2>
         <input placeholder='What dish are you looking for?' value={dish} onChange={(e) => setDish(e.target.value)} />
-      </StyledContainer>
+      </div>
       <div>
         <p>Filter Area</p>
         <label>Cousine</label>
@@ -79,7 +82,7 @@ export default function Search() {
         <div>
           <div>
             {recipes.map((recipe) => 
-              <StyledColumn key={recipe.id} >
+              <div key={recipe.id} >
               <img src={recipe.image} width="50" height="60"></img>
               <p>{recipe.title}</p>
               <button onClick={() => handleSubmitRecipe(recipe)}>Add</button>
@@ -95,7 +98,7 @@ export default function Search() {
               </Modal.Footer>
               </Modal>
 
-              </StyledColumn>
+              </div>
             )}
           </div>
         </div>
