@@ -13,7 +13,7 @@ export default function UserIngredients() {
 //  const  { ingredientsContext, setIngredients} = useContext(IngredientContext);
 
   const getIngredients = () => {
-    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=b6d38a42317e4300b862164b8fc3baae&query=${ingredient}`).then((res) => {
+    axios.get(`https://api.spoonacular.com/food/ingredients/search?apiKey=${process.env.REACT_APP_SPOONACULAR}&query=${ingredient}`).then((res) => {
     setListIngredients(res.data.results);
     });
   };
