@@ -9,15 +9,6 @@ const provider = new GoogleAuthProvider();
 function NavBar () {
     const [user, setUser] = useState('User');
     const login = useContext(AppContext);
-    // console.log(login);
-
-    // const handleChangeForRecipeBtn = () => {
-    //   alert("You should log-in first!");
-    // }
-
-    // const handleChangeForListBtn = () => {
-    //   alert("You should log-in first!");
-    // }
 
     const loginWithGoogle = () => {
       signInWithPopup(auth, provider).then((result)=>{
