@@ -4,6 +4,7 @@ import StyledMyFridge from "./StyledMyFridge";
 import axios from 'axios';
 import { IngredientContext } from "../IngredientContext";
 
+
 export default function UserIngredients() {
 
   const [ingredient, setIngredient] = useState("");
