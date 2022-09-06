@@ -18,14 +18,14 @@ function App() {
           <BrowserRouter>
             <NavBar />
             <Routes>
-              <Route
+              <Route 
                 path="/"
                 element={
                   <>
-                    <h2>This is a home page.</h2>
-                    <p>
+                    <h2 className="home-heading">This is a home page.</h2>
+                    <p className="home-text"> 
                       Let's begin to search recipes! If you want to use other
-                      features, please log-in first.
+                      features, please <span className="log-in">log-in</span> first.
                     </p>
                     <Search />
                   </>
@@ -102,7 +102,6 @@ function App() {
           </BrowserRouter>
         </RecipeProvider>
       </AppContext.Provider>
-      {/* </div> */}
     </div>
   );
 }
